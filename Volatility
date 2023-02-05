@@ -1,0 +1,22 @@
+double calculate_volatility(double current_price, double previous_price) {
+  return fabs(current_price - previous_price) / previous_price;
+}
+
+void update_stock_data(std::string symbol, double price, int timestamp) {
+  Stock& stock = stock_data[symbol];
+  double previous_price = stock.price;
+  stock.price = price;
+  stock.timestamp = timestamp;
+  stock.volatility = calculate_volatility(price, previous_price);
+}
+
+void execute_trade(std::string symbol, double price, int timestamp, double target_volatility) {
+  Stock& stock = stock_data[symbol];
+
+  // Only consider buying or selling the stock if it has experienced high volatility in the last 5 minutes
+  if (stock.volatility > target_volatility && timestamp - stock.timestamp <= 300) {
+    // Buy the stock if it has recently experienced high volatility
+    std::cout << "Buying " << symbol << " at price " << price << std::endl;
+    // ...
+  }
+}
