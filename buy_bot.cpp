@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <thread>
+#include <chrono>
+#include <algorithm>
 
 using namespace std;
 
@@ -32,11 +35,17 @@ int main() {
   // Populate the stock data vector with data from the CNN
   // Assume the CNN has already made predictions and set the 'should_buy' field for each stock
 
-  // Loop through the stock data and execute trades based on the predictions
+  // Parallelize the stock trading by creating a separate thread for each stock
+  vector<thread> threads;
   for (int i = 0; i < stock_data.size(); i++) {
     StockData &stock = stock_data[i];
-    buyStock(stock);
-    sellStock(stock);
+    threads.push_back(thread(buyStock, stock));
+    threads.push_back(thread(sellStock, stock));
+  }
+
+  // Wait for all threads to finish executing
+  for (int i = 0; i < threads.size(); i++) {
+    threads[i].join();
   }
 
   cout << "Final money: " << current_money << " dollars" << endl;
