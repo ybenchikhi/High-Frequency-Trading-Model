@@ -2,8 +2,8 @@
 This is a C++ implementation of a high frequency trading model, designed to minimize latency and take advantage of market inefficiencies to maximize profits. The model uses the FIX protocol to receive real-time market data and make trading decisions based on the updated OrderBook.
 
 Requirements
-A compiler that supports C++11 or later
-A market data provider that supports the FIX protocol
+A compiler that supports C++11 or later,
+A market data provider that supports the FIX protocol.
 Getting Started:
 Clone the repository to your local machine:
 
