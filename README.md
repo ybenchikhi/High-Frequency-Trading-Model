@@ -1,25 +1,22 @@
-# High-Frequency-Trading-Model
-This is a C++ implementation of a high frequency trading model, designed to minimize latency and take advantage of market inefficiencies to maximize profits. The model uses the FIX protocol to receive real-time market data and make trading decisions based on the updated OrderBook.
+This project is aimed at creating a high frequency trading model to buy and sell stocks with the highest potential for profit. The model consists of two parts: a Convolutional Neural Network (CNN) trained to make predictions based on the stock's historical volatility, and a C++ file that executes the trades with ultra low latency.
 
 Requirements:
-A compiler that supports C++11 or later,
-A market data provider that supports the FIX protocol.
-Getting Started:
-Clone the repository to your local machine:
+TensorFlow,
+Numpy,
+Pandas,
+yfinance.
+Data Processing:
+The data for the stocks is obtained from Yahoo Finance using the yfinance library. The data is preprocessed to calculate the stock's volatility over the past 5 minutes and is used as the input to the CNN.
 
-Establish a FIX connection with your market data provider and subscribe to the symbols you are interested in receiving market data for.
+Convolutional Neural Network:
+The CNN model is a binary classification model trained to predict if a stock will make a profit in the next 5 minutes based on its volatility over the past 5 minutes. The model consists of 4 dense layers with increasing numbers of neurons and uses a sigmoid activation function in the output layer to produce binary predictions. The model has been pre-trained and the weights are stored in model_weights.h5.
 
-Implementation Details:
-The model consists of several key components:
+Trading Execution:
+The trades are executed using a C++ file that implements a low latency trading algorithm. The file takes the ticker symbol of the stock as input and executes a buy or sell order accordingly. The CNN model and the C++ file are integrated in a Python script that calls the C++ file for each stock in a list of stock tickers if the CNN predicts a high enough return.
 
-OrderBook class: Keeps track of the bid and ask prices for each symbol, as well as the trade volume.
-Market data subscription and parsing: Subscribes to real-time market data using the FIX protocol and parses the received messages to extract the relevant information.
-Trading decision: Makes a trading decision based on the updated OrderBook.
-Limitations:
-This implementation is intended for educational and demonstration purposes only and may not be suitable for real-world trading. Before using this model, it is important to understand the risks associated with high frequency trading and to thoroughly test and validate the model in a simulated trading environment.
-
-Contributing:
-If you'd like to contribute to this project, please open a pull request or an issue on the GitHub repository.
-
-License:
-This project is licensed under the MIT License. 
+Usage
+Clone the repository: git clone
+Install the required libraries: pip install -r requirements.txt
+Run the trading script: python trade.py
+Note:
+This is only a sample project and has yet to be tested with real-time data only historical data.
