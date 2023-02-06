@@ -19,4 +19,4 @@ Clone the repository: git clone
 Install the required libraries: pip install -r requirements.txt
 Run the trading script: python trade.py
 Note:
-This is only a sample project under development that as yet to be tested with real time data!
+This is only a sample project under development that has yet to be tested with real time data!
