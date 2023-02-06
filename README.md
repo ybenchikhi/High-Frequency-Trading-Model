@@ -1,4 +1,3 @@
-#High Frequency Trading Model
 This project is aimed at creating a high frequency trading model to buy and sell stocks with the highest potential for profit. The model consists of two parts: a Convolutional Neural Network (CNN) trained to make predictions based on the stock's historical volatility, and a C++ file that executes the trades with ultra low latency.
 
 Requirements:
