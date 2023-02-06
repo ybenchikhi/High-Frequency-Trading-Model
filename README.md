@@ -14,7 +14,7 @@ The CNN model is a binary classification model trained to predict if a stock wil
 Trading Execution:
 The trades are executed using a C++ file that implements a low latency trading algorithm. The file takes the ticker symbol of the stock as input and executes a buy or sell order accordingly. The CNN model and the C++ file are integrated in a Python script that calls the C++ file for each stock in a list of stock tickers if the CNN predicts a high enough return.
 
-Usage
+Usage:
 Clone the repository: git clone
 Install the required libraries: pip install -r requirements.txt
 Run the trading script: python trade.py
