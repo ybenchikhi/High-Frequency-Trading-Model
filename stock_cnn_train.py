@@ -8,13 +8,21 @@ import subprocess
 def get_data(ticker):
     df = yf.download(ticker, period="1m", interval="1m")
     volatility = df['Close'].rolling(5).std()
-    X = np.array(volatility[-6:-1]).reshape(1, -1)
+    volume = df['Volume'].rolling(5).mean()
+    #sentiment = get_sentiment(ticker)
+    X = np.array([volatility[-6:-1], volume[-6:-1], sentiment[-6:-1]]).reshape(1, -1)
     return X
+
+# Define a function to get news sentiment for a given stock
+#def get_sentiment(ticker):
+    # Code to retrieve news sentiment data for the given stock ticker
+    
 
 # Load the pre-trained model
 model = tf.keras.models.Sequential([
-    tf.keras.layers.Dense(64, activation='relu', input_shape=(5, )),
+    tf.keras.layers.Dense(64, activation='relu', input_shape=(15, )),
     tf.keras.layers.Dense(32, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
     tf.keras.layers.Dense(16, activation='relu'),
     tf.keras.layers.Dense(1, activation='sigmoid')
 ])
